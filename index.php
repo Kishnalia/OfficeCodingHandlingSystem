@@ -1,43 +1,28 @@
 <?php
+include 'db.php';
+
 
 session_start();
 
-$email="neri";
-$password="neri";
+if(isset($_SESSION['email'])){
 
-
-if ($_SERVER["REQUEST_METHOD"]=='POST'){
-    $inputEmail=$_POST['email'];
-    $inputPassword = $_POST['password'];
-    
-    if ($inputEmail == $email && $inputPassword == $password){
-        $_SESSION['email'] = $email;
-        header('location:index.php');
-        exit();
-    }
+    echo"welcome!!" . $_SESSION['email'];
 
 }
-
-if (isset($_SESSION['email'])){
-    echo"welcome" . $_SESSION['email'];
-    echo"<form action='logout.php' method='post'><button type='submit'>logout</button></form>";
-}else {
-    echo "error credentials";
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,3 +1,47 @@
+<?php
+include 'db.php';
+
+session_start();
+
+if($_SERVER['REQUEST_METHOD']=='POST'){
+    $inputEmail = $_POST['email'];
+    $inputPass =  $_POST['password'];
+
+    $sql_check = "SELECT * FROM users WHERE email = '$inputEmail'";
+    $result = $conn->query($sql_check);
+
+    if($result->num_rows > 0){
+        $row = $result->fetch_assoc();
+        $hashpass = $row['password'];
+        if (password_verify($inputPass,$hashpass)){
+            $_SESSION['email'] = $inputEmail;
+            header('location:index.php');
+            exit();
+        }
+        else{
+            echo "error" . $conn->error;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +50,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="index.php" method="post">
+    <form action="login.php" method="post">
         <label for="email" >email</label>
         <input name="email"  id="name">
         <label for="password" >password</label>
