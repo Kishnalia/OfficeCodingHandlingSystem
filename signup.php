@@ -1,6 +1,6 @@
 <?php
 include 'db.php';
-session_start();
+
 if($_SERVER["REQUEST_METHOD"] == 'POST'){
     $inputEmail = $_POST['email'];
     $inputPass = $_POST['password'];
