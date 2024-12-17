@@ -28,6 +28,13 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Management</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet">
+
+<!-- Optional: Font Awesome for icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+<!-- Optional: jQuery (needed for some MDB components) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
 
 .createEmployee {
@@ -50,14 +57,55 @@ $result = $conn->query($sql);
         }
         table, th, td {
             border: 1px solid black;
+            
         }
         th, td {
             padding: 10px;
             text-align: center;
         }
         th {
-            background-color: #f2f2f2;
+            background-color:rgb(2, 2, 2);
+            color:white;
+            border: 1px solid white;
         }
+
+        .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+#createModal {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
     </style>
 </head>
 <body>
@@ -66,7 +114,7 @@ $result = $conn->query($sql);
         <button type="submit">Logout</button>
     </form>
     <!-- Employee Creation Form -->
-     <div hidden id="createModal" style="height: 100vh; width: 100vw;">
+     <div id="createModal" style="height: 100vh; width: 100vw;">
         <div>
             <h2>Create Employee</h2>
             <form method="POST" action="create.php">
@@ -90,22 +138,22 @@ $result = $conn->query($sql);
 
     <!-- Display Employee Table -->
     <button id="createEmployee">Create Employee</button>
-    <h2>Employee List</h2>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Middle Name</th>
-            <th>Last Name</th>
-            <th>Date of Hired</th>
-            <th>TIN Number</th>
-            <th>SSS Number</th>
-            <th>PhilHealth Number</th>
-            <th>PAG-IBIG Number</th>
-            <th>Date of Birth</th>
-            <th>Contact Name</th>
-            <th>Contact Address</th>
-            <th>Contact Number</th>
+    <h2>EMPLOYEES INFORATION LIST</h2>
+    <table class="table">
+        <tr  class="table-dark" style = "background:black;">
+            <th  class="table-dark">ID</th>
+            <th  class="table-dark">First Name</th>
+            <th  class="table-dark">Middle Name</th>
+            <th  class="table-dark">Last Name</th>
+            <th  class="table-dark">Date of Hired</th>
+            <th  class="table-dark">TIN Number</th>
+            <th  class="table-dark">SSS Number</th>
+            <th  class="table-dark">PhilHealth Number</th>
+            <th  class="table-dark">PAG-IBIG Number</th>
+            <th  class="table-dark">Date of Birth</th>
+            <th  class="table-dark">Contact Name</th>
+            <th  class="table-dark">Contact Address</th>
+            <th  class="table-dark">Contact Number</th>
         </tr>
         <?php
         if ($result->num_rows > 0) {
@@ -135,7 +183,92 @@ $result = $conn->query($sql);
 
    
 
-    <script>
+    
+
+    <!-- Footer -->
+<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+  <!-- Section: Social media -->
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    
+
+ 
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>HANDLING INNOVATION INC.
+          </h6>
+          <p>
+          Toyota Material Handling International is a total solution provider within the material handling business. With a leading position in material handling and financial strengths to back it up, we provide worldwide logistic solutions and high-quality products to optimize our customers' operations.
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            BRANDS
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">AWithin material handling, we provide you with the total solution, with a lineup consisting of TOYOTA, BT, and RAYMOND brands. </a>
+          </p>
+         
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="https://toyotamaterialhandling-international.com/about-us/local-representation/handling-innovation-incorporated" class="text-reset">HANDLING INNOVATION INC.</a>
+          </p>
+         
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3"></i> Km 19 West Service Road, South Luzon Expressway, Marcelo Green
+          Paranaque, Philippines</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            sales@toyotaforklifts-philippines.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> (+63) 2 8821 1414</p>
+         
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2024 Copyright:
+    <a class="text-reset fw-bold">JOHN NERI ESCOBELLA & GABRIELLE PEREZ</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
+<script>
 var modal = document.getElementById("createModal");
 var btn = document.getElementById("createEmployee");
 var close = document.getElementById("closeCreateModal");
