@@ -35,6 +35,11 @@ $result = $conn->query($sql);
 
 <!-- Optional: jQuery (needed for some MDB components) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.0.0/mdb.min.css"
+    rel="stylesheet"
+  />
     <style>
 
 .createEmployee {
@@ -69,7 +74,7 @@ $result = $conn->query($sql);
             border: 1px solid white;
         }
 
-        .modal {
+        #createModal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -89,7 +94,7 @@ $result = $conn->query($sql);
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 40%;
 }
 
 /* The Close Button */
@@ -109,36 +114,149 @@ $result = $conn->query($sql);
     </style>
 </head>
 <body>
-    <h1>Welcome, <?php echo htmlspecialchars($_SESSION['email']); ?></h1>
+    <!-- Image and text -->
+<nav class="navbar navbar-light bg-body-tertiary" style="margin-bottom:20px;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img
+        src="image/2.jpeg"
+        class="me-2"
+        height="50"
+        alt="MDB Logo"
+        loading="lazy"
+      />
+      <small>EMPLOYEE INFORMATION MANAGEMENT SYSTEM</small>
+    </a>
     <form action="logout.php" method="post">
-        <button type="submit">Logout</button>
+    <button type="submit" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init  data-mdb-ripple-color="dark">LOGOUT</button>
     </form>
-    <!-- Employee Creation Form -->
-     <div id="createModal" style="height: 100vh; width: 100vw;">
-        <div>
-            <h2>Create Employee</h2>
-            <form method="POST" action="create.php">
-                <label>First Name:</label> <input type="text" name="first_name" required><br>
-                <label>Middle Name:</label> <input type="text" name="middle_name"><br>
-                <label>Last Name:</label> <input type="text" name="last_name" required><br>
-                <label>Date of Hired:</label> <input type="date" name="date_of_hired" required><br>
-                <label>TIN Number:</label> <input type="text" name="tin_number"><br>
-                <label>SSS Number:</label> <input type="text" name="sss_number"><br>
-                <label>PhilHealth Number:</label> <input type="text" name="philhealth_number"><br>
-                <label>PAG-IBIG Number:</label> <input type="text" name="pag_ibig_number"><br>
-                <label>Date of Birth:</label> <input type="date" name="date_of_birth" required><br>
-                <label>Contact Name:</label> <input type="text" name="contact_name"><br>
-                <label>Contact Address:</label> <input type="text" name="contact_address"><br>
-                <label>Contact Number:</label> <input type="text" name="contact_number"><br>
-                <button id="closeCreateModal">Close</button>
-                <button id ="subs" type="submit">Submit</button>
+  </div>
+</nav>
+   
+    
+<!-- <button type="button" class="btn btn-primary" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">...</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-mdb-ripple-init>Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+    <div id="createModal" >
+
+    <div>
+    <h2 style="text-align: center; display: inline-block; margin: 20px; auto; width: 100%;">EMPLOYEES INFORMATION </h2>
+        <form method="POST" action="create.php">
+<div class="row mb-4">
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <input type="text" id="first_name" name="first_name"class="form-control" required/>
+        <label class="form-label" for="first_name" name="first_name">First name</label>
+      </div>
+    </div>
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <input type="text" id="middle_name" name="middle_name"class="form-control"required />
+        <label class="form-label" name="middle_name" for="middle_name">Middle Name</label>
+      </div>
+    </div>
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <input type="text" id="last_name" name="last_name" class="form-control" required/>
+        <label class="form-label" for="last_name"name="last_name">Last name</label>
+      </div>
+    </div>
+  </div>
+               
+  <div data-mdb-input-init class="form-outline mb-4">
+    <input type="date" id="date_of_hired" name="date_of_hired"class="form-control"required />
+    <label class="form-label" name="date_of_hired" for="date_of_hired">DATE HIRED</label>
+  </div>
+  <div class="row mb-4">
+  <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <input type="text" id="tin_number" name="tin_number"class="form-control" required/>
+        <label class="form-label" for="tin_number" name="tin_number">TIN NUMBER</label>
+      </div>
+    </div>
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <input type="text" id="sss_number" name="sss_number"class="form-control" required/>
+        <label class="form-label" name="sss_number" for="sss_number">SSS NUMBER</label>
+      </div>
+    </div>
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <input type="text" id="philhealth_number" name="philhealth_number" class="form-control" required/>
+        <label class="form-label" for="philhealth_number"name="philhealth_number">PHILHEALTH NO.</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+  <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <input type="text" id="pag_ibig_number" name="pag_ibig_number"class="form-control" required/>
+        <label class="form-label" for="pag_ibig_number" name="pag_ibig_number">PAG-IBIG NUMBER</label>
+      </div>
+    </div>
+   
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" required/>
+        <label class="form-label" for="date_of_birth"name="date_of_birth">DATE OF BIRTH</label>
+      </div>
+    </div>
+  </div>
+                
+  <h2 style="text-align: center; display: inline-block; margin: 0 auto; width: 100%; margin-bottom:20px;">IN CASE OF EMERGENCY CONTACTS</h2>
+    
+                
+  <div class="row mb-4">
+  <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <input type="text" id="contact_name" name="contact_name"class="form-control" required/>
+        <label class="form-label" for="contact_name" name="contact_name">CONTACT NAME</label>
+      </div>
+    </div>
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <input type="text" id="contact_address" name="contact_address"class="form-control" required/>
+        <label class="form-label" name="contact_address" for="contact_address">ADDRESS</label>
+      </div>
+    </div>
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <input type="text" id="contact_number" name="contact_number" class="form-control" required/>
+        <label class="form-label" for="contact_number"name="contact_number">CONTACT NUMBER</label>
+      </div>
+    </div>
+  </div>
+                <div style="text-align: center; display: inline-block; margin: 0 auto; width: 100%; margin-bottom:20px;">
+  <button type="button" id="closeCreateModal" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init  data-mdb-ripple-color="dark" style="margin-bottom:20px; margin-top:50px; margin-left:20px">Close</button>
+  <button type="submit" id="subs" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init  data-mdb-ripple-color="dark" style="margin-bottom:20px; margin-top:50px; margin-left:20px">Submit</button>
+  </div>
+               
             </form>
         </div>
      </div>
 
     <!-- Display Employee Table -->
-    <button id="createEmployee">Create Employee</button>
-    <h2>EMPLOYEES INFORATION LIST</h2>
+    <!-- <button type="button" id="createEmployee" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init  data-mdb-ripple-color="dark">CREATE EMPLOYEE</button> -->
+    <h2 style="text-align: center; display: inline-block; margin: 0 auto; width: 100%;">EMPLOYEES INFORMATION LIST</h2>
+    <button type="button" id="createEmployee" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init  data-mdb-ripple-color="dark" style="margin-bottom:20px; margin-top:50px; margin-left:20px">CREATE EMPLOYEE</button>
     <table class="table">
         <tr  class="table-dark" style = "background:black;">
             <th  class="table-dark">ID</th>
@@ -278,15 +396,23 @@ btn.onclick = function(){
     modal.style.display = "block";
 }
 
+
 close.onclick = function() {
   modal.style.display = "none";
 }
+
 
 sub.onclick = function(){
     modal.style.display ="none";
 }
 
+// $(#createModal).style.display = "block";
+// $(#createModal).prop('hidden', true);
 
     </script>
+     <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.0.0/mdb.min.js"
+  ></script>
 </body>
 </html>
