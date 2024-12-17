@@ -1,39 +1,27 @@
 <?php
-include 'db.php';
 
+include 'db.php';
 session_start();
 
-if($_SERVER['REQUEST_METHOD']=='POST'){
+if ($_SERVER["REQUEST_METHOD"]=='POST'){
     $inputEmail = $_POST['email'];
-    $inputPass =  $_POST['password'];
+    $inputPass = $_POST['password'];
 
-    $sql_check = "SELECT * FROM users WHERE email = '$inputEmail'";
-    $result = $conn->query($sql_check);
+    $sql_result = "select * from users where email = '$inputEmail'";
+    $result = $conn->query($sql_result);
 
-    if($result->num_rows > 0){
+    if($result->num_rows>0){
         $row = $result->fetch_assoc();
-        $hashpass = $row['password'];
-        if (password_verify($inputPass,$hashpass)){
-            $_SESSION['email'] = $inputEmail;
+        $hash = $row['password'];
+        if(password_verify($inputPass,$hash)){
+            $_SESSION['email'] = $row['email'];
             header('location:index.php');
             exit();
-        }
-        else{
-            echo "error" . $conn->error;
+        } else {
+            echo "yawa ayaw gumana" . $conn->error;
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 ?>
 
