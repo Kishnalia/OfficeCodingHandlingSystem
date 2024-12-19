@@ -24,11 +24,11 @@ if (isset($_GET['query'])) {
             first_name LIKE '%$query%' OR 
             middle_name LIKE '%$query%' OR 
             last_name LIKE '%$query%' OR 
-            contact_name LIKE '%$query%'";
+            contact_name LIKE '%$query%'" ;
 
      $result = $conn->query($sql);
 } else {
-    $sql = "SELECT * FROM employees";
+    $sql = "SELECT * FROM employees where is_deleted = 0";
     $result = $conn->query($sql);
 }
 ?>
@@ -317,7 +317,7 @@ if (isset($_GET['query'])) {
                             <input type='hidden' name='employee_id' value=".$row['employee_id'].">
                             <button type='submit' onclick='return confirm('Are you sure you want to delete this record?');'>Delete</button>
                         </form>
-                         <form method='POST' action='delete.php' style='display:inline;'>
+                         <form method='GET' action='update.php' style='display:inline;'>
                             <input type='hidden' name='employee_id' value=".$row['employee_id'].">
                             <button type='submit' onclick='return confirm('Are you sure you want to delete this record?');'>Update</button>
                         </form>
