@@ -18,8 +18,19 @@ $email = $_SESSION['email'];
 
 
 
-$sql = "SELECT * FROM employees";
-$result = $conn->query($sql);
+if (isset($_GET['query'])) {
+    $query = htmlspecialchars($_GET['query']);
+    $sql = "SELECT * FROM employees WHERE 
+            first_name LIKE '%$query%' OR 
+            middle_name LIKE '%$query%' OR 
+            last_name LIKE '%$query%' OR 
+            contact_name LIKE '%$query%'";
+
+     $result = $conn->query($sql);
+} else {
+    $sql = "SELECT * FROM employees";
+    $result = $conn->query($sql);
+}
 ?>
 
 <!DOCTYPE html>
@@ -115,6 +126,8 @@ $result = $conn->query($sql);
 </head>
 <body>
     <!-- Image and text -->
+
+    
 <nav class="navbar navbar-light bg-body-tertiary" style="margin-bottom:20px;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
@@ -132,7 +145,7 @@ $result = $conn->query($sql);
     </form>
   </div>
 </nav>
-   
+
     
 <!-- <button type="button" class="btn btn-primary" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
   Launch demo modal
@@ -257,7 +270,15 @@ $result = $conn->query($sql);
     <!-- <button type="button" id="createEmployee" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init  data-mdb-ripple-color="dark">CREATE EMPLOYEE</button> -->
     <h2 style="text-align: center; display: inline-block; margin: 0 auto; width: 100%;">EMPLOYEES INFORMATION LIST</h2>
     <button type="button" id="createEmployee" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init  data-mdb-ripple-color="dark" style="margin-bottom:20px; margin-top:50px; margin-left:20px">CREATE EMPLOYEE</button>
-    <table class="table">
+    <div class="input-group">
+    
+</div>
+<form method="get" action="index.php" style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+  <input type="text" name="query" class="form-control rounded" placeholder="Search employees" aria-label="Search" style="width: 300px; margin-right: 10px;" />
+  <button type="submit" class="btn btn-outline-primary">Search</button>
+</form>
+<div class="table-responsive">
+<table class="table table-hover table-striped">
         <tr  class="table-dark" style = "background:black;">
             <th  class="table-dark">ID</th>
             <th  class="table-dark">First Name</th>
@@ -272,6 +293,7 @@ $result = $conn->query($sql);
             <th  class="table-dark">Contact Name</th>
             <th  class="table-dark">Contact Address</th>
             <th  class="table-dark">Contact Number</th>
+            <th  class="table-dark">Action</th>
         </tr>
         <?php
         if ($result->num_rows > 0) {
@@ -290,15 +312,26 @@ $result = $conn->query($sql);
                     <td>" . htmlspecialchars($row['contact_name']) . "</td>
                     <td>" . htmlspecialchars($row['contact_address']) . "</td>
                     <td>" . htmlspecialchars($row['contact_number']) . "</td>
+                    <td> 
+                        <form method='POST' action='delete.php' style='display:inline;'>
+                            <input type='hidden' name='employee_id' value=".$row['employee_id'].">
+                            <button type='submit' onclick='return confirm('Are you sure you want to delete this record?');'>Delete</button>
+                        </form>
+                         <form method='POST' action='delete.php' style='display:inline;'>
+                            <input type='hidden' name='employee_id' value=".$row['employee_id'].">
+                            <button type='submit' onclick='return confirm('Are you sure you want to delete this record?');'>Update</button>
+                        </form>
+                    </td>
+
                     
-                </tr>";
+                </tr>"; 
             }
         } else {
-            echo "<tr><td colspan='13'>No employees found</td></tr>";
+            echo "<tr><td colspan='14'>No employees found</td></tr>";
         }
         ?>
     </table>
-
+    </div>
    
 
     
@@ -414,5 +447,6 @@ sub.onclick = function(){
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.0.0/mdb.min.js"
   ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.0.0/mdb.min.js"></script>
 </body>
 </html>
