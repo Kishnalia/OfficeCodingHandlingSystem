@@ -17,6 +17,8 @@ if($_SERVER["REQUEST_METHOD"]='POST'){
     $inputContact = $_POST['contact_number'];
 
 
+   
+
 
     $sql = "insert into employees (first_name,middle_name,last_name,date_of_hired,tin_number,sss_number,philhealth_number,pag_ibig_number,date_of_birth,contact_name,contact_address,contact_number) values ('$inputFname','$inputMname','$inputLname','$inputDofhired',' $inputTin','$inputSSS','$inputPhil','$inputPagibig','$inputDbirth','$inputCname','$inputCadd','$inputContact')";
 
