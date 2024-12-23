@@ -3,25 +3,41 @@
     include 'db.php';
     session_start();
 
+    $errorEmail = "";
+    $errorPass = "";
+
     if ($_SERVER["REQUEST_METHOD"]=='POST'){
         $inputEmail = $_POST['email'];
         $inputPass = $_POST['password'];
+if(empty($_POST['email'])){
+    $errorEmail = "email is required";
+} else{
 
-        $sql_result = "select * from users where email = '$inputEmail'";
+
+    $sql_result = "select * from users where email = '$inputEmail'";
         $result = $conn->query($sql_result);
-
         if($result->num_rows>0){
             $row = $result->fetch_assoc();
             $hash = $row['password'];
+        
             if(password_verify($inputPass,$hash)){
                 $_SESSION['email'] = $row['email'];
                 header('location:index.php');
                 exit();
             } else {
-                echo "yawa ayaw gumana" . $conn->error;
+               $errorPass ="password is incorrect!";
             }
         }
     }
+
+
+
+}
+
+if(empty($_POST['password'])){
+
+}
+       
 
     ?>
 
@@ -68,12 +84,12 @@
                     </div>
 
                     <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">SIGN IN YOUR ACCOUNT</h5>
-
+                    <span style="color:red"><?php echo $errorEmail;?></span>
                     <div data-mdb-input-init class="form-outline mb-4">
                         <input type="email" id="email" name="email" class="form-control form-control-lg" />
                         <label class="form-label" for="email" name="name">Email address</label>
-                    </div>
-
+                    </div>                                  
+                    <span style="color:red"><?php echo $errorPass;?></span>
                     <div data-mdb-input-init class="form-outline mb-4">
                         <input type="password" id="password" name="password" class="form-control form-control-lg" />
                         <label class="form-label" for="password" name="password">Password</label>
