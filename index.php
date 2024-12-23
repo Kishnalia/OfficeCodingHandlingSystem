@@ -53,77 +53,12 @@ if (isset($_GET['query'])) {
     href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.0.0/mdb.min.css"
     rel="stylesheet"
   />
+  <link
+    href="style.css"
+    rel="stylesheet"
+  />
     <style>
 
-.createEmployee {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-            
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color:rgb(2, 2, 2);
-            color:white;
-            border: 1px solid white;
-        }
-
-        #createModal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-#createModal {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 40%;
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
     </style>
 </head>
 <body>
@@ -178,49 +113,49 @@ if (isset($_GET['query'])) {
                     <div class="form-outline">
                         <input type="text" id="first_name" name="first_name" class="form-control"  />
                         <label class="form-label" for="first_name">First name</label>
-                        <div class="error"><?php echo $firstNameErr; ?></div>
+                        
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <input type="text" id="middle_name" name="middle_name" class="form-control"  required/>
+                        <input type="text" id="middle_name" name="middle_name" class="form-control"  />
                         <label class="form-label" for="middle_name">Middle Name</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <input type="text" id="last_name" name="last_name" class="form-control"  required/>
+                        <input type="text" id="last_name" name="last_name" class="form-control" />
                         <label class="form-label" for="last_name">Last name</label>
-                        <div class="error"><?php echo $lastNameErr; ?></div>
+                 
                     </div>
                 </div>
             </div>
 
             <div class="form-outline mb-4">
-                <input type="date" id="date_of_hired" name="date_of_hired" class="form-control"  required/>
+                <input type="date" id="date_of_hired" name="date_of_hired" class="form-control" />
                 <label class="form-label" for="date_of_hired">DATE HIRED</label>
             </div>
 
             <div class="row mb-4">
                 <div class="col">
                     <div class="form-outline">
-                        <input type="text" id="tin_number" name="tin_number" class="form-control" required/>
+                        <input type="number" id="tin_number" name="tin_number" class="form-control" />
                         <label class="form-label" for="tin_number">TIN NUMBER</label>
-                        <div class="error"><?php echo $tinErr; ?></div>
+             
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <input type="text" id="sss_number" name="sss_number" class="form-control"  required/>
+                        <input type="number" id="sss_number" name="sss_number" class="form-control" />
                         <label class="form-label" for="sss_number">SSS NUMBER</label>
-                        <div class="error"><?php echo $sssErr; ?></div>
+                
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <input type="text" id="philhealth_number" name="philhealth_number" class="form-control" required/>
+                        <input type="number" id="philhealth_number" name="philhealth_number" class="form-control"/>
                         <label class="form-label" for="philhealth_number">PHILHEALTH NO.</label>
-                        <div class="error"><?php echo $philhealthNumberErr; ?></div>
+                     
                     </div>
                 </div>
             </div>
@@ -228,14 +163,14 @@ if (isset($_GET['query'])) {
             <div class="row mb-4">
                 <div class="col">
                     <div class="form-outline">
-                        <input type="text" id="pag_ibig_number" name="pag_ibig_number" class="form-control"  required/>
+                        <input type="number" id="pag_ibig_number" name="pag_ibig_number" class="form-control" />
                         <label class="form-label" for="pag_ibig_number">PAG-IBIG NUMBER</label>
-                        <div class="error"><?php echo $pagibigNumberErr; ?></div>
+                 
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <input type="date" id="date_of_birth" name="date_of_birth" class="form-control"  required/>
+                        <input type="date" id="date_of_birth" name="date_of_birth" class="form-control"  />
                         <label class="form-label" for="date_of_birth">DATE OF BIRTH</label>
                     </div>
                 </div>
@@ -246,31 +181,31 @@ if (isset($_GET['query'])) {
   <div class="row mb-4">
   <div class="col">
       <div data-mdb-input-init class="form-outline">
-        <input type="text" id="contact_name" name="contact_name"class="form-control" required/>
+        <input type="text" id="contact_name" name="contact_name"class="form-control" />
         <label class="form-label" for="contact_name" name="contact_name">CONTACT NAME</label>
-        <div class="error"><?php echo $conNameErr; ?></div>
+   
     </div>
     </div>
     <div class="col">
       <div data-mdb-input-init class="form-outline">
-        <input type="text" id="contact_address" name="contact_address"class="form-control" required/>
+        <input type="text" id="contact_address" name="contact_address"class="form-control" />
         <label class="form-label" name="contact_address" for="contact_address">ADDRESS</label>
-        <div class="error"><?php echo $conAddErr; ?></div> 
+ 
         
     </div>
     </div>
     <div class="col">
       <div data-mdb-input-init class="form-outline">
-        <input type="text" id="contact_number" name="contact_number" class="form-control" required/>
+        <input type="number" id="contact_number" name="contact_number" class="form-control" />
         <label class="form-label" for="contact_number"name="contact_number">CONTACT NUMBER</label>
-        <div class="error"><?php echo $contactNumberErr; ?></div>
+
     </div>
     </div>
   </div>
 
-            <div style="text-align: center; display: inline-block; margin: 0 auto; width: 100%; margin-bottom:20px;">
-  <button type="button" id="closeCreateModal" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init  data-mdb-ripple-color="dark" style="margin-bottom:20px; margin-top:50px; margin-left:20px">Close</button>
-  <button type="submit" id="subs" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init  data-mdb-ripple-color="dark" style="margin-bottom:20px; margin-top:50px; margin-left:20px">Submit</button>
+  <div style="text-align: center; display: inline-block; margin: 0 auto; width: 100%; margin-bottom:20px;">
+      <button type="button" id="closeCreateModal" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init  data-mdb-ripple-color="dark" style="margin-bottom:20px; margin-top:50px; margin-left:20px">Close</button>
+      <button type="submit" id="subs" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init  data-mdb-ripple-color="dark" style="margin-bottom:20px; margin-top:50px; margin-left:20px">Submit</button>
   </div>
         </form>
     </div>
@@ -441,7 +376,11 @@ var modal = document.getElementById("createModal");
 var btn = document.getElementById("createEmployee");
 var close = document.getElementById("closeCreateModal");
 var sub = document.getElementById("subs");
-const first_name = document.getElementById('first_name')
+const first_name = document.getElementById('first_name');
+
+if (<?php echo isset($modalOpen) ? 'true' : 'false'; ?>) {
+  modal.style.display = "block";
+}
 
 btn.onclick = function(){
     modal.style.display = "block";

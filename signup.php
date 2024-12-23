@@ -1,20 +1,29 @@
 <?php
 include 'db.php';
 
+$errorName ="";
+$errorPass = "";
+
 if($_SERVER["REQUEST_METHOD"] == 'POST'){
     $inputEmail = $_POST['email'];
     $inputPass = $_POST['password'];
 
+  if(empty($_POST['email'])){
+    $errorName = "email cannot be empty";
+  }else {
+    
+      $sql_check = "select * from users where email = '$inputEmail'";
+      $result = $conn -> query($sql_check);
+      if($result->num_rows > 0){
+        $errorName ="The email has been registered already find new one";
+      
+    } 
+  }
 
-    $sql_check = "SELECT * FROM users WHERE email = '$inputEmail'";
-    $result = $conn->query($sql_check);
+if (empty($_POST['password'])){
+  $errorPass="The password is required";
 
-
-
-    if($result -> num_rows > 0){
-        echo "hello!! paki ayus email mneron na yan!";
-    } else 
-
+} else if(empty($errorName)) {
     $passhash = password_hash($inputPass , PASSWORD_DEFAULT);
     $sql = "insert into users (email, password) values ('$inputEmail','$passhash')";
 
@@ -24,18 +33,9 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
     } else {
      echo "error" . $conn->error;
     }
+
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 ?>
 
@@ -77,16 +77,20 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
                     </div>
 
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign up for account!</h5>
-
+                  <span style="color:red"><?php echo $errorName; ?></span>
                   <div data-mdb-input-init class="form-outline mb-4">
                     <input type="email" id="email" name="email" class="form-control form-control-lg" />
                     <label class="form-label" for="email" name="email">Email address</label>
+                    
                   </div>
-
+                  
+                  <span style="color:red"><?php echo $errorPass; ?></span>
                   <div data-mdb-input-init class="form-outline mb-4">
                     <input type="password" id="password" name="password" class="form-control form-control-lg" />
                     <label class="form-label" name="password" for="password">Password</label>
+                    
                   </div>
+                 
 
                   <div class="pt-1 mb-4">
                     <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block" type="submit">register</button>
